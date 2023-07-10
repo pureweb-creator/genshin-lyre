@@ -21,9 +21,9 @@ return
         'development' => [
             'adapter' => 'mysql',
             'host' => 'localhost',
-            'name' => 'development_db',
+            'name' => 'genshin-lyre',
             'user' => 'root',
-            'pass' => '123',
+            'pass' => '',
             'port' => '3306',
             'charset' => 'utf8',
         ],

@@ -14,17 +14,26 @@ class UserSeeder extends AbstractSeed
      */
     public function run(): void
     {
-        $faker = Faker\Factory::create();
+        $data = [
+            [
+                'name'=>'Radiant Dreams',
+                'notes'=>'sfghg / hgfdndd / sfghg / hgfddqq / wqhsh / gfdandd / sfghg / hgda / snsdndfnfgng / gfdsa / snsdndfnfg'
+            ],
+            [
+                'name'=>'Never Gonna Give you up',
+                'notes'=>'hjqqwjhg / hhjqhgttw / hjqqwjhg / hhjqhgwwwew / ghqheew / ghqhwwq / ghqhqwjhgwq / ghqheew / ghqhtjq / ghqhqwjhgwq'
+            ],
+            [
+                'name'=>'Dawn Vinery',
+                'notes'=>'dh / ee / wqw / jg / hjq / qqjhj / gd / dh / ee / wqw / jg / hjqjhjhgh / hjqfwqjqwg / jqwgejwqjq / hjqfwqjqwg / jqwgejw / q'
+            ],
+            [
+                'name'=>'Tokyo Ghoul',
+                'notes'=>'JWQJH / WQJH / HGFFGD / DDDDEW / QJJJQQ / QWQJHWQJH / HGFFGD DDDDEW / QJJJQQ / JQQQ / QEEWW / QWQJGD / JQQQ / QEEWWQ / EWWJQ / GDGG / DDSS / DDGG / DDSS / DDGG / DDSSDD / DEW / EWWWQJQJ / GEWWWQJQTJ / QYTEQJQJHJQ / QJQJG / DEWWQJQJGG / EWWQJQTJ / QYTEQJQJHJQ'
+            ]
+        ];
 
-        for ($i=0; $i<10; $i++){
-            $data[] = [
-                'name' => $faker->userName,
-                'email' => $faker->email(),
-                'password' => password_hash($faker->password(), PASSWORD_DEFAULT)
-            ];
-        }
-
-        $this->table('user')
+        $this->table('melodies')
             ->insert($data)
             ->save();
     }

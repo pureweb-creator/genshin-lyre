@@ -8,9 +8,6 @@ ini_set('error_log', __DIR__.'/debug.log');
 
 session_start();
 
-if (!isset($_SESSION['csrf_token']))
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 

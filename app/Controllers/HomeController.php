@@ -1,33 +1,26 @@
-<?php 
+<?php
+
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Models\UserModel;
+use App\Models\MelodiesModel;
 
-class HomeController extends Controller{
-
-    public function __construct()
-    {
-        $this->model = new UserModel();
-
-        parent::__construct();
-    }
-
+class HomeController extends Controller
+{
     public function index()
     {
-		if ($_POST){
-			$this->csrf_check();
+        $model = new MelodiesModel();
+        
+        $melody_id = htmlspecialchars($_GET['melody_id'] ?? 1);
+        $melody = $model->getMelody($melody_id);
+        $melody[0]->notes = json_encode(explode(' / ', $melody[0]->notes));
+        
+        if (!empty($melody))
+            $this->data->chosenMelody = array_shift($melody);
 
-			// OTHER STUFF GOES HERE
-			
-			header('Location: ./');
-		}
+        $this->data->melodiesList = $model->getAllMelodies();
+        $this->data->title = "Genshin Impact Lyre";
 
-        $users = $this->model->getAllUsers();
-
-		$this->data->title = _("Home");
-        $this->data->users = $users;
-
-		$this->view->render('index', $this->data);
-	}
+        $this->view->render('index', $this->data);    
+    }
 }

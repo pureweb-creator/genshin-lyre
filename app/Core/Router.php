@@ -8,7 +8,10 @@ namespace App\Core;
 final class Router{
 	public static function run(): void
     {
-		$uri = array_filter(explode('/', $_SERVER['REQUEST_URI']));
+		// remove query string
+		$uri = explode('?', $_SERVER['REQUEST_URI'])[0];
+
+		$uri = array_filter(explode('/', $uri));
 
 		$controller_name = ucfirst($uri[2] ?? 'home')."Controller";
 		$controller_method = $uri[3] ?? 'index';
@@ -31,10 +34,5 @@ final class Router{
 	public static function getUrl(): string
     {
 		return SITEURL;
-	}
-
-	public static function getCurrentLang(): string
-    {
-		return array_filter(explode('/', $_SERVER['REQUEST_URI']))[1] ?? '';
 	}
 }

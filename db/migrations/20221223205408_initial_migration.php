@@ -18,11 +18,10 @@ final class InitialMigration extends AbstractMigration
      */
     public function change()
     {
-        if (!$this->hasTable('user')){
-            $this->table('user')
+        if (!$this->hasTable('melodies')){
+            $this->table('melodies')
                 ->addColumn('name', 'string', ['null'=>false, 'limit'=>'30'])
-                ->addColumn('email', 'string', ['null'=>false, 'limit'=>'319'])
-                ->addColumn('password', 'binary', ['null'=>false, 'limit'=>'60'])
+                ->addColumn('notes', 'string', ['null'=>false])
                 ->create();
         }
     }
